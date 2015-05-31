@@ -20,9 +20,9 @@ func main() {
 	flag.Parse()
 
 	svcConfig := &service.Config{
-		Name:        "Ripple price allerts",
-		DisplayName: "Ripple price allerts",
-		Description: "Monitors ripple ledgers and sends an allert if prices go beyond specified thresholds",
+		Name:        "Ripple price alerts",
+		DisplayName: "Ripple price alerts",
+		Description: "Monitors ripple ledgers and sends an alert if prices go beyond specified thresholds",
 	}
 
 	prg := &program{}

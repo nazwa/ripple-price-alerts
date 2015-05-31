@@ -60,7 +60,6 @@ func (p *program) run() error {
 				if item.Error != nil {
 					logger.Error(item.Error)
 				} else {
-					logger.Info(item)
 					if item.NewAlertDetected() {
 						item.MarkReported()
 						if err := job.Notify(item); err != nil {
