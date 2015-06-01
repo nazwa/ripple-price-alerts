@@ -3,8 +3,10 @@ package main
 
 import (
 	"flag"
+	"github.com/kardianos/osext"
 	"github.com/kardianos/service"
 	"log"
+	"os"
 )
 
 var logger service.Logger
@@ -18,6 +20,17 @@ var logger service.Logger
 func main() {
 	svcFlag := flag.String("service", "", "Control the system service.")
 	flag.Parse()
+
+	if !service.Interactive() {
+		root, _ := osext.ExecutableFolder()
+
+		f, err := os.OpenFile(root+"/output.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+		if err != nil {
+			log.Fatal(err)
+		}
+		defer f.Close()
+		log.SetOutput(f)
+	}
 
 	svcConfig := &service.Config{
 		Name:        "Ripple price alerts",
